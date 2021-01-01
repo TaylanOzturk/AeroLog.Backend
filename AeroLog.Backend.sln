@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AeroLog.Backend", "AeroLog.Backend\AeroLog.Backend.csproj", "{376F165D-B84C-4F10-9370-2784BE85E1AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{376F165D-B84C-4F10-9370-2784BE85E1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{376F165D-B84C-4F10-9370-2784BE85E1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{376F165D-B84C-4F10-9370-2784BE85E1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{376F165D-B84C-4F10-9370-2784BE85E1AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09434EB4-FD0E-4644-B54D-042B6CA0ED6A}
+	EndGlobalSection
+EndGlobal
