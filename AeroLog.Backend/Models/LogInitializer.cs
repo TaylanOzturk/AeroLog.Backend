@@ -8,6 +8,7 @@ namespace AeroLog.Backend.Models
 {
     public class LogInitializer: DropCreateDatabaseIfModelChanges<AeroLogContext>
     {
+
         protected override void Seed(AeroLogContext context)
         {
             var users = new List<User>

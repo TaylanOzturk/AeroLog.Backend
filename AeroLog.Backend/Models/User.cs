@@ -7,6 +7,10 @@ namespace AeroLog.Backend.Models
 {
     public class User 
     {
+        public User()
+        {
+            this.Flights = new HashSet<Flight>();
+        }
        public int UserID { get; set; }
        public string UserName { get; set; }
        public string UserSurname { get; set; }
@@ -15,6 +19,7 @@ namespace AeroLog.Backend.Models
        public string UserAdres { get; set; }
        public int CompanyID { get; set; }
        public int OccupationID { get; set; }
+       public ICollection<Flight> Flights { get; set; }
        public virtual Company Company { get; set; }
        public virtual Occupation Occupation { get; set; } 
 
