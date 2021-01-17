@@ -19,8 +19,8 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44370</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -214,12 +214,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AirportsController.cs" />
-    <Compile Include="Controllers\CompaniesController.cs" />
-    <Compile Include="Controllers\FlightsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OccupationsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,15 +226,92 @@
     <Compile Include="Migrations\202101042313099_Initial.Designer.cs">
       <DependentUpon>202101042313099_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101071141280_userupdate.cs" />
+    <Compile Include="Migrations\202101071141280_userupdate.Designer.cs">
+      <DependentUpon>202101071141280_userupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101091830090_alwnll.cs" />
+    <Compile Include="Migrations\202101091830090_alwnll.Designer.cs">
+      <DependentUpon>202101091830090_alwnll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101101854397_DataN.cs" />
+    <Compile Include="Migrations\202101101854397_DataN.Designer.cs">
+      <DependentUpon>202101101854397_DataN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101151403145_RoleUser.cs" />
+    <Compile Include="Migrations\202101151403145_RoleUser.Designer.cs">
+      <DependentUpon>202101151403145_RoleUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101161721593_AddRole.cs" />
+    <Compile Include="Migrations\202101161721593_AddRole.Designer.cs">
+      <DependentUpon>202101161721593_AddRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101171939028_RoleProvider.cs" />
+    <Compile Include="Migrations\202101171939028_RoleProvider.Designer.cs">
+      <DependentUpon>202101171939028_RoleProvider.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AeroLogContext.cs" />
     <Compile Include="Models\Airport.cs" />
+    <Compile Include="Models\Airports.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ALModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ALModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ALModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ALModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ALModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Companies.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Flight.cs" />
-    <Compile Include="Models\LogInitializer.cs" />
+    <Compile Include="Models\Flights.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GunlukUcus_Result.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdUcusListesi_Result.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KayitliKullanicilar.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Occupation.cs" />
+    <Compile Include="Models\Occupations.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Roles.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ucuslar.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRoleProvider.cs" />
+    <Compile Include="Models\UserRoles.cs" />
+    <Compile Include="Models\Users.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="Models\Vehicles.cs">
+      <DependentUpon>ALModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -251,8 +323,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\ALModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ALModel.edmx</DependentUpon>
+      <LastGenOutput>ALModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ALModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ALModel.edmx</DependentUpon>
+      <LastGenOutput>ALModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\ALModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ALModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ALModel.edmx.diagram">
+      <DependentUpon>ALModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -278,31 +367,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Flights\Create.cshtml" />
-    <Content Include="Views\Flights\Delete.cshtml" />
-    <Content Include="Views\Flights\Details.cshtml" />
-    <Content Include="Views\Flights\Edit.cshtml" />
-    <Content Include="Views\Flights\Index.cshtml" />
-    <Content Include="Views\Occupations\Create.cshtml" />
-    <Content Include="Views\Occupations\Delete.cshtml" />
-    <Content Include="Views\Occupations\Details.cshtml" />
-    <Content Include="Views\Occupations\Edit.cshtml" />
-    <Content Include="Views\Occupations\Index.cshtml" />
-    <Content Include="Views\Companies\Create.cshtml" />
-    <Content Include="Views\Companies\Delete.cshtml" />
-    <Content Include="Views\Companies\Details.cshtml" />
-    <Content Include="Views\Companies\Edit.cshtml" />
-    <Content Include="Views\Companies\Index.cshtml" />
-    <Content Include="Views\Airports\Create.cshtml" />
-    <Content Include="Views\Airports\Delete.cshtml" />
-    <Content Include="Views\Airports\Details.cshtml" />
-    <Content Include="Views\Airports\Edit.cshtml" />
-    <Content Include="Views\Airports\Index.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -327,6 +393,27 @@
     <EmbeddedResource Include="Migrations\202101042313099_Initial.resx">
       <DependentUpon>202101042313099_Initial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101071141280_userupdate.resx">
+      <DependentUpon>202101071141280_userupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101091830090_alwnll.resx">
+      <DependentUpon>202101091830090_alwnll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101101854397_DataN.resx">
+      <DependentUpon>202101101854397_DataN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101151403145_RoleUser.resx">
+      <DependentUpon>202101151403145_RoleUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101161721593_AddRole.resx">
+      <DependentUpon>202101161721593_AddRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101171939028_RoleProvider.resx">
+      <DependentUpon>202101171939028_RoleProvider.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -346,7 +433,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>23943</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44370/</IISUrl>
+          <IISUrl>https://localhost:44370</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

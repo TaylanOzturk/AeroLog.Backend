@@ -1,0 +1,823 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AeroLog.Backend.Models.AeroLogContextModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Airports">
+          <Key>
+            <PropertyRef Name="AirportID" />
+          </Key>
+          <Property Name="AirportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AirportName" Type="nvarchar(max)" />
+          <Property Name="IATA" Type="nvarchar(max)" />
+          <Property Name="ICAO" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Longitude" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar(max)" />
+          <Property Name="CompanyPhone" Type="int" Nullable="false" />
+          <Property Name="CompanyEmail" Type="nvarchar(max)" />
+          <Property Name="CompanyWebsite" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Flights">
+          <Key>
+            <PropertyRef Name="FlightID" />
+          </Key>
+          <Property Name="FlightID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlightCode" Type="nvarchar(max)" />
+          <Property Name="Departure" Type="datetime" Nullable="false" />
+          <Property Name="Arrival" Type="datetime" Nullable="false" />
+          <Property Name="ArrivalAirport_AirportID" Type="int" />
+          <Property Name="DepartureAirport_AirportID" Type="int" />
+          <Property Name="VehicleID" Type="int" Nullable="false" />
+          <Property Name="Airport_AirportID" Type="int" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Occupations">
+          <Key>
+            <PropertyRef Name="OccupationID" />
+          </Key>
+          <Property Name="OccupationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OccupationName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RoleUsers">
+          <Key>
+            <PropertyRef Name="Role_RoleID" />
+            <PropertyRef Name="User_UserID" />
+          </Key>
+          <Property Name="Role_RoleID" Type="int" Nullable="false" />
+          <Property Name="User_UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserFlights">
+          <Key>
+            <PropertyRef Name="User_UserID" />
+            <PropertyRef Name="Flight_FlightID" />
+          </Key>
+          <Property Name="User_UserID" Type="int" Nullable="false" />
+          <Property Name="Flight_FlightID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="UserSurname" Type="nvarchar(max)" />
+          <Property Name="UserEmail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserPhone" Type="nvarchar(max)" />
+          <Property Name="UserAdres" Type="nvarchar(max)" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="OccupationID" Type="int" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicles">
+          <Key>
+            <PropertyRef Name="VehicleID" />
+          </Key>
+          <Property Name="VehicleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleName" Type="nvarchar(max)" />
+          <Property Name="VehicleCode" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AeroLog.Backend.Models.AeroLogContext.dbo.KayitliKullanicilar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="KayitliKullanicilar">
+          <Key>
+            <PropertyRef Name="EPOSTA" />
+            <PropertyRef Name="SIRKET TELEFONU" />
+          </Key>
+          <Property Name="KULLANICI ADI" Type="nvarchar(max)" />
+          <Property Name="SOYADI" Type="nvarchar(max)" />
+          <Property Name="EPOSTA" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TELEFON" Type="nvarchar(max)" />
+          <Property Name="ADRESI" Type="nvarchar(max)" />
+          <Property Name="MESLEGI" Type="nvarchar(max)" />
+          <Property Name="SIRKET ADI" Type="nvarchar(max)" />
+          <Property Name="SIRKET EPOSTA" Type="nvarchar(max)" />
+          <Property Name="SIRKET TELEFONU" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AeroLog.Backend.Models.AeroLogContext.dbo.Ucuslar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Ucuslar">
+          <Key>
+            <PropertyRef Name="KALKIS TARIHI" />
+            <PropertyRef Name="VARIS TARIHI" />
+          </Key>
+          <Property Name="KULLANICI ADI" Type="nvarchar(max)" />
+          <Property Name="SIRKET ADI" Type="nvarchar(max)" />
+          <Property Name="UCUS KODU" Type="nvarchar(max)" />
+          <Property Name="KALKIS TARIHI" Type="datetime" Nullable="false" />
+          <Property Name="VARIS TARIHI" Type="datetime" Nullable="false" />
+          <Property Name="KALKIS" Type="nvarchar(max)" />
+          <Property Name="VARIS" Type="nvarchar(max)" />
+          <Property Name="VehicleName" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_dbo_Flights_dbo_Airports_Airport_AirportID">
+          <End Role="Airports" Type="Self.Airports" Multiplicity="0..1" />
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airports">
+              <PropertyRef Name="AirportID" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="Airport_AirportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Flights_dbo_Airports_ArrivalAirport_AirportID">
+          <End Role="Airports" Type="Self.Airports" Multiplicity="0..1" />
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airports">
+              <PropertyRef Name="AirportID" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="ArrivalAirport_AirportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Flights_dbo_Airports_DepartureAirport_AirportID">
+          <End Role="Airports" Type="Self.Airports" Multiplicity="0..1" />
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airports">
+              <PropertyRef Name="AirportID" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="DepartureAirport_AirportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Flights_dbo_Vehicles_VehicleID">
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="VehicleID" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="VehicleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RoleUsers_dbo_Roles_Role_RoleID">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoleUsers" Type="Self.RoleUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="RoleUsers">
+              <PropertyRef Name="Role_RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_RoleUsers_dbo_Users_User_UserID">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoleUsers" Type="Self.RoleUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RoleUsers">
+              <PropertyRef Name="User_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserFlights_dbo_Flights_Flight_FlightID">
+          <End Role="Flights" Type="Self.Flights" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserFlights" Type="Self.UserFlights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flights">
+              <PropertyRef Name="FlightID" />
+            </Principal>
+            <Dependent Role="UserFlights">
+              <PropertyRef Name="Flight_FlightID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserFlights_dbo_Users_User_UserID">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserFlights" Type="Self.UserFlights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserFlights">
+              <PropertyRef Name="User_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_Companies_CompanyID">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_Occupations_OccupationID">
+          <End Role="Occupations" Type="Self.Occupations" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Occupations">
+              <PropertyRef Name="OccupationID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="OccupationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GunlukUcus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="IdUcusListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="AeroLogBackendModelsAeroLogContextModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Airports" EntityType="Self.Airports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flights" EntityType="Self.Flights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Occupations" EntityType="Self.Occupations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleUsers" EntityType="Self.RoleUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserFlights" EntityType="Self.UserFlights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KayitliKullanicilar" EntityType="Self.KayitliKullanicilar" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [KayitliKullanicilar].[KULLANICI ADI] AS [KULLANICI ADI], 
+    [KayitliKullanicilar].[SOYADI] AS [SOYADI], 
+    [KayitliKullanicilar].[EPOSTA] AS [EPOSTA], 
+    [KayitliKullanicilar].[TELEFON] AS [TELEFON], 
+    [KayitliKullanicilar].[ADRESI] AS [ADRESI], 
+    [KayitliKullanicilar].[MESLEGI] AS [MESLEGI], 
+    [KayitliKullanicilar].[SIRKET ADI] AS [SIRKET ADI], 
+    [KayitliKullanicilar].[SIRKET EPOSTA] AS [SIRKET EPOSTA], 
+    [KayitliKullanicilar].[SIRKET TELEFONU] AS [SIRKET TELEFONU]
+    FROM [dbo].[KayitliKullanicilar] AS [KayitliKullanicilar]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Ucuslar" EntityType="Self.Ucuslar" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Ucuslar].[KULLANICI ADI] AS [KULLANICI ADI], 
+    [Ucuslar].[SIRKET ADI] AS [SIRKET ADI], 
+    [Ucuslar].[UCUS KODU] AS [UCUS KODU], 
+    [Ucuslar].[KALKIS TARIHI] AS [KALKIS TARIHI], 
+    [Ucuslar].[VARIS TARIHI] AS [VARIS TARIHI], 
+    [Ucuslar].[KALKIS] AS [KALKIS], 
+    [Ucuslar].[VARIS] AS [VARIS], 
+    [Ucuslar].[VehicleName] AS [VehicleName]
+    FROM [dbo].[Ucuslar] AS [Ucuslar]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_Flights_dbo_Airports_Airport_AirportID" Association="Self.FK_dbo_Flights_dbo_Airports_Airport_AirportID">
+            <End Role="Airports" EntitySet="Airports" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Flights_dbo_Airports_ArrivalAirport_AirportID" Association="Self.FK_dbo_Flights_dbo_Airports_ArrivalAirport_AirportID">
+            <End Role="Airports" EntitySet="Airports" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Flights_dbo_Airports_DepartureAirport_AirportID" Association="Self.FK_dbo_Flights_dbo_Airports_DepartureAirport_AirportID">
+            <End Role="Airports" EntitySet="Airports" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Flights_dbo_Vehicles_VehicleID" Association="Self.FK_dbo_Flights_dbo_Vehicles_VehicleID">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RoleUsers_dbo_Roles_Role_RoleID" Association="Self.FK_dbo_RoleUsers_dbo_Roles_Role_RoleID">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="RoleUsers" EntitySet="RoleUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_RoleUsers_dbo_Users_User_UserID" Association="Self.FK_dbo_RoleUsers_dbo_Users_User_UserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RoleUsers" EntitySet="RoleUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserFlights_dbo_Flights_Flight_FlightID" Association="Self.FK_dbo_UserFlights_dbo_Flights_Flight_FlightID">
+            <End Role="Flights" EntitySet="Flights" />
+            <End Role="UserFlights" EntitySet="UserFlights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserFlights_dbo_Users_User_UserID" Association="Self.FK_dbo_UserFlights_dbo_Users_User_UserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserFlights" EntitySet="UserFlights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Companies_CompanyID" Association="Self.FK_dbo_Users_dbo_Companies_CompanyID">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Occupations_OccupationID" Association="Self.FK_dbo_Users_dbo_Occupations_OccupationID">
+            <End Role="Occupations" EntitySet="Occupations" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AeroLog.Backend.Models.AeroLogContextModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Airports">
+          <Key>
+            <PropertyRef Name="AirportID" />
+          </Key>
+          <Property Name="AirportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AirportName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IATA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ICAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Longitude" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Flights" Relationship="Self.FK_dbo_Flights_dbo_Airports_Airport_AirportID" FromRole="Airports" ToRole="Flights" />
+          <NavigationProperty Name="Flights1" Relationship="Self.FK_dbo_Flights_dbo_Airports_ArrivalAirport_AirportID" FromRole="Airports" ToRole="Flights" />
+          <NavigationProperty Name="Flights2" Relationship="Self.FK_dbo_Flights_dbo_Airports_DepartureAirport_AirportID" FromRole="Airports" ToRole="Flights" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyPhone" Type="Int32" Nullable="false" />
+          <Property Name="CompanyEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyWebsite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Users_dbo_Companies_CompanyID" FromRole="Companies" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Flights">
+          <Key>
+            <PropertyRef Name="FlightID" />
+          </Key>
+          <Property Name="FlightID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlightCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Departure" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Arrival" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ArrivalAirport_AirportID" Type="Int32" />
+          <Property Name="DepartureAirport_AirportID" Type="Int32" />
+          <Property Name="VehicleID" Type="Int32" Nullable="false" />
+          <Property Name="Airport_AirportID" Type="Int32" />
+          <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Airports" Relationship="Self.FK_dbo_Flights_dbo_Airports_Airport_AirportID" FromRole="Flights" ToRole="Airports" />
+          <NavigationProperty Name="Airports1" Relationship="Self.FK_dbo_Flights_dbo_Airports_ArrivalAirport_AirportID" FromRole="Flights" ToRole="Airports" />
+          <NavigationProperty Name="Airports2" Relationship="Self.FK_dbo_Flights_dbo_Airports_DepartureAirport_AirportID" FromRole="Flights" ToRole="Airports" />
+          <NavigationProperty Name="Vehicles" Relationship="Self.FK_dbo_Flights_dbo_Vehicles_VehicleID" FromRole="Flights" ToRole="Vehicles" />
+          <NavigationProperty Name="Users" Relationship="Self.UserFlights" FromRole="Flights" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Occupations">
+          <Key>
+            <PropertyRef Name="OccupationID" />
+          </Key>
+          <Property Name="OccupationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OccupationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Users_dbo_Occupations_OccupationID" FromRole="Occupations" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.RoleUsers" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserSurname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserAdres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="OccupationID" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Companies" Relationship="Self.FK_dbo_Users_dbo_Companies_CompanyID" FromRole="Users" ToRole="Companies" />
+          <NavigationProperty Name="Occupations" Relationship="Self.FK_dbo_Users_dbo_Occupations_OccupationID" FromRole="Users" ToRole="Occupations" />
+          <NavigationProperty Name="Roles" Relationship="Self.RoleUsers" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Flights" Relationship="Self.UserFlights" FromRole="Users" ToRole="Flights" />
+        </EntityType>
+        <EntityType Name="Vehicles">
+          <Key>
+            <PropertyRef Name="VehicleID" />
+          </Key>
+          <Property Name="VehicleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Flights" Relationship="Self.FK_dbo_Flights_dbo_Vehicles_VehicleID" FromRole="Vehicles" ToRole="Flights" />
+        </EntityType>
+        <EntityType Name="KayitliKullanicilar">
+          <Key>
+            <PropertyRef Name="EPOSTA" />
+            <PropertyRef Name="SIRKET_TELEFONU" />
+          </Key>
+          <Property Name="KULLANICI_ADI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SOYADI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EPOSTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TELEFON" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADRESI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MESLEGI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIRKET_ADI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIRKET_EPOSTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIRKET_TELEFONU" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ucuslar">
+          <Key>
+            <PropertyRef Name="KALKIS_TARIHI" />
+            <PropertyRef Name="VARIS_TARIHI" />
+          </Key>
+          <Property Name="KULLANICI_ADI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIRKET_ADI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UCUS_KODU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KALKIS_TARIHI" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VARIS_TARIHI" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="KALKIS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VARIS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_dbo_Flights_dbo_Airports_Airport_AirportID">
+          <End Role="Airports" Type="Self.Airports" Multiplicity="0..1" />
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airports">
+              <PropertyRef Name="AirportID" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="Airport_AirportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Flights_dbo_Airports_ArrivalAirport_AirportID">
+          <End Role="Airports" Type="Self.Airports" Multiplicity="0..1" />
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airports">
+              <PropertyRef Name="AirportID" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="ArrivalAirport_AirportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Flights_dbo_Airports_DepartureAirport_AirportID">
+          <End Role="Airports" Type="Self.Airports" Multiplicity="0..1" />
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airports">
+              <PropertyRef Name="AirportID" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="DepartureAirport_AirportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_Companies_CompanyID">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Flights_dbo_Vehicles_VehicleID">
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="VehicleID" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="VehicleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_dbo_Occupations_OccupationID">
+          <End Role="Occupations" Type="Self.Occupations" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Occupations">
+              <PropertyRef Name="OccupationID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="OccupationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoleUsers">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+        </Association>
+        <Association Name="UserFlights">
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Airports" EntityType="Self.Airports" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" />
+          <EntitySet Name="Flights" EntityType="Self.Flights" />
+          <EntitySet Name="Occupations" EntityType="Self.Occupations" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Vehicles" EntityType="Self.Vehicles" />
+          <EntitySet Name="KayitliKullanicilar" EntityType="Self.KayitliKullanicilar" />
+          <EntitySet Name="Ucuslar" EntityType="Self.Ucuslar" />
+          <AssociationSet Name="FK_dbo_Flights_dbo_Airports_Airport_AirportID" Association="Self.FK_dbo_Flights_dbo_Airports_Airport_AirportID">
+            <End Role="Airports" EntitySet="Airports" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Flights_dbo_Airports_ArrivalAirport_AirportID" Association="Self.FK_dbo_Flights_dbo_Airports_ArrivalAirport_AirportID">
+            <End Role="Airports" EntitySet="Airports" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Flights_dbo_Airports_DepartureAirport_AirportID" Association="Self.FK_dbo_Flights_dbo_Airports_DepartureAirport_AirportID">
+            <End Role="Airports" EntitySet="Airports" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Companies_CompanyID" Association="Self.FK_dbo_Users_dbo_Companies_CompanyID">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Flights_dbo_Vehicles_VehicleID" Association="Self.FK_dbo_Flights_dbo_Vehicles_VehicleID">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_dbo_Occupations_OccupationID" Association="Self.FK_dbo_Users_dbo_Occupations_OccupationID">
+            <End Role="Occupations" EntitySet="Occupations" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="RoleUsers" Association="Self.RoleUsers">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="UserFlights" Association="Self.UserFlights">
+            <End Role="Flights" EntitySet="Flights" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <FunctionImport Name="GunlukUcus" ReturnType="Collection(AeroLog.Backend.Models.AeroLogContextModel.GunlukUcus_Result)" />
+          <FunctionImport Name="IdUcusListesi" ReturnType="Collection(AeroLog.Backend.Models.AeroLogContextModel.IdUcusListesi_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GunlukUcus_Result">
+          <Property Type="String" Name="UserName" Nullable="true" />
+          <Property Type="String" Name="OccupationName" Nullable="true" />
+          <Property Type="String" Name="CompanyName" Nullable="true" />
+          <Property Type="String" Name="ICAO" Nullable="true" />
+          <Property Type="String" Name="ICAO1" Nullable="true" />
+          <Property Type="String" Name="VehicleName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="IdUcusListesi_Result">
+          <Property Type="String" Name="ADI" Nullable="true" />
+          <Property Type="String" Name="TELEFON" Nullable="true" />
+          <Property Type="String" Name="MESLEK" Nullable="true" />
+          <Property Type="String" Name="SİRKET" Nullable="true" />
+          <Property Type="String" Name="UCUS_KODU" Nullable="true" />
+          <Property Type="DateTime" Name="KAKIS_VAKTI" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="VARIS_VAKTI" Nullable="false" Precision="23" />
+          <Property Type="String" Name="KALKIS" Nullable="true" />
+          <Property Type="String" Name="VARIS" Nullable="true" />
+          <Property Type="String" Name="ARAC_TIPI" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AeroLogBackendModelsAeroLogContextModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Airports">
+            <EntityTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.Airports">
+              <MappingFragment StoreEntitySet="Airports">
+                <ScalarProperty Name="AirportID" ColumnName="AirportID" />
+                <ScalarProperty Name="AirportName" ColumnName="AirportName" />
+                <ScalarProperty Name="IATA" ColumnName="IATA" />
+                <ScalarProperty Name="ICAO" ColumnName="ICAO" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.Companies">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="CompanyWebsite" ColumnName="CompanyWebsite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flights">
+            <EntityTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.Flights">
+              <MappingFragment StoreEntitySet="Flights">
+                <ScalarProperty Name="FlightID" ColumnName="FlightID" />
+                <ScalarProperty Name="FlightCode" ColumnName="FlightCode" />
+                <ScalarProperty Name="Departure" ColumnName="Departure" />
+                <ScalarProperty Name="Arrival" ColumnName="Arrival" />
+                <ScalarProperty Name="ArrivalAirport_AirportID" ColumnName="ArrivalAirport_AirportID" />
+                <ScalarProperty Name="DepartureAirport_AirportID" ColumnName="DepartureAirport_AirportID" />
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+                <ScalarProperty Name="Airport_AirportID" ColumnName="Airport_AirportID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Occupations">
+            <EntityTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.Occupations">
+              <MappingFragment StoreEntitySet="Occupations">
+                <ScalarProperty Name="OccupationID" ColumnName="OccupationID" />
+                <ScalarProperty Name="OccupationName" ColumnName="OccupationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserSurname" ColumnName="UserSurname" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="UserAdres" ColumnName="UserAdres" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="OccupationID" ColumnName="OccupationID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicles">
+            <EntityTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.Vehicles">
+              <MappingFragment StoreEntitySet="Vehicles">
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+                <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+                <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KayitliKullanicilar">
+            <EntityTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.KayitliKullanicilar">
+              <MappingFragment StoreEntitySet="KayitliKullanicilar">
+                <ScalarProperty Name="KULLANICI_ADI" ColumnName="KULLANICI ADI" />
+                <ScalarProperty Name="SOYADI" ColumnName="SOYADI" />
+                <ScalarProperty Name="EPOSTA" ColumnName="EPOSTA" />
+                <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+                <ScalarProperty Name="ADRESI" ColumnName="ADRESI" />
+                <ScalarProperty Name="MESLEGI" ColumnName="MESLEGI" />
+                <ScalarProperty Name="SIRKET_ADI" ColumnName="SIRKET ADI" />
+                <ScalarProperty Name="SIRKET_EPOSTA" ColumnName="SIRKET EPOSTA" />
+                <ScalarProperty Name="SIRKET_TELEFONU" ColumnName="SIRKET TELEFONU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ucuslar">
+            <EntityTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.Ucuslar">
+              <MappingFragment StoreEntitySet="Ucuslar">
+                <ScalarProperty Name="KULLANICI_ADI" ColumnName="KULLANICI ADI" />
+                <ScalarProperty Name="SIRKET_ADI" ColumnName="SIRKET ADI" />
+                <ScalarProperty Name="UCUS_KODU" ColumnName="UCUS KODU" />
+                <ScalarProperty Name="KALKIS_TARIHI" ColumnName="KALKIS TARIHI" />
+                <ScalarProperty Name="VARIS_TARIHI" ColumnName="VARIS TARIHI" />
+                <ScalarProperty Name="KALKIS" ColumnName="KALKIS" />
+                <ScalarProperty Name="VARIS" ColumnName="VARIS" />
+                <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="RoleUsers" TypeName="AeroLog.Backend.Models.AeroLogContextModel.RoleUsers" StoreEntitySet="RoleUsers">
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="RoleID" ColumnName="Role_RoleID" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserID" ColumnName="User_UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserFlights" TypeName="AeroLog.Backend.Models.AeroLogContextModel.UserFlights" StoreEntitySet="UserFlights">
+            <EndProperty Name="Flights">
+              <ScalarProperty Name="FlightID" ColumnName="Flight_FlightID" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserID" ColumnName="User_UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GunlukUcus" FunctionName="AeroLog.Backend.Models.AeroLogContextModel.Store.GunlukUcus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.GunlukUcus_Result">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="OccupationName" ColumnName="OccupationName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ICAO" ColumnName="ICAO" />
+                <ScalarProperty Name="ICAO1" ColumnName="ICAO1" />
+                <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="IdUcusListesi" FunctionName="AeroLog.Backend.Models.AeroLogContextModel.Store.IdUcusListesi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AeroLog.Backend.Models.AeroLogContextModel.IdUcusListesi_Result">
+                <ScalarProperty Name="ADI" ColumnName="ADI" />
+                <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+                <ScalarProperty Name="MESLEK" ColumnName="MESLEK" />
+                <ScalarProperty Name="SİRKET" ColumnName="SİRKET" />
+                <ScalarProperty Name="UCUS_KODU" ColumnName="UCUS KODU" />
+                <ScalarProperty Name="KAKIS_VAKTI" ColumnName="KAKIS VAKTI" />
+                <ScalarProperty Name="VARIS_VAKTI" ColumnName="VARIS VAKTI" />
+                <ScalarProperty Name="KALKIS" ColumnName="KALKIS" />
+                <ScalarProperty Name="VARIS" ColumnName="VARIS" />
+                <ScalarProperty Name="ARAC_TIPI" ColumnName="ARAC TIPI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

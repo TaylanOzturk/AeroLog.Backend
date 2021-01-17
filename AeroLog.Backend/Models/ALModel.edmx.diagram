@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cfe52ffbaa4e4cab935f9f793b3b42ce" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="AeroLog.Backend.Models.AeroLogContextModel.C__MigrationHistory" Width="1.5" PointX="8" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AeroLog.Backend.Models.AeroLogContextModel.Airports" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AeroLog.Backend.Models.AeroLogContextModel.Companies" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AeroLog.Backend.Models.AeroLogContextModel.Flights" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AeroLog.Backend.Models.AeroLogContextModel.Occupations" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AeroLog.Backend.Models.AeroLogContextModel.Roles" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="AeroLog.Backend.Models.AeroLogContextModel.Users" Width="1.5" PointX="5.875" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AeroLog.Backend.Models.AeroLogContextModel.Vehicles" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="AeroLog.Backend.Models.AeroLogContextModel.KayitliKullanicilar" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AeroLog.Backend.Models.AeroLogContextModel.Ucuslar" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="AeroLog.Backend.Models.AeroLogContextModel.FK_dbo_Flights_dbo_Airports_Airport_AirportID" ManuallyRouted="false" />
+        <AssociationConnector Association="AeroLog.Backend.Models.AeroLogContextModel.FK_dbo_Flights_dbo_Airports_ArrivalAirport_AirportID" ManuallyRouted="false" />
+        <AssociationConnector Association="AeroLog.Backend.Models.AeroLogContextModel.FK_dbo_Flights_dbo_Airports_DepartureAirport_AirportID" ManuallyRouted="false" />
+        <AssociationConnector Association="AeroLog.Backend.Models.AeroLogContextModel.FK_dbo_Users_dbo_Companies_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="AeroLog.Backend.Models.AeroLogContextModel.FK_dbo_Flights_dbo_Vehicles_VehicleID" ManuallyRouted="false" />
+        <AssociationConnector Association="AeroLog.Backend.Models.AeroLogContextModel.FK_dbo_Users_dbo_Occupations_OccupationID" ManuallyRouted="false" />
+        <AssociationConnector Association="AeroLog.Backend.Models.AeroLogContextModel.RoleUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="AeroLog.Backend.Models.AeroLogContextModel.UserFlights" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
